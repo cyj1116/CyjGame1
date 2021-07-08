@@ -1,7 +1,9 @@
-const CyjGame = (fps) => {
+const CyjGame = (fps, images, runCallback) => {
+    // images 是一个对象, 里面是图片的名字, 程序会在所有图片载入成功后运行
     let g = {
         actions: {},
         keydowns: {},
+        images: {}
     }
     const canvas = document.querySelector('#id-canvas')
     const context = canvas.getContext('2d')
@@ -23,7 +25,8 @@ const CyjGame = (fps) => {
         g.actions[key] = callback
     }
     //timer
-    window.fps = 30
+    window.fps = 60
+
     // 递归 动态调试
     const runLoop = () => {
         log(window.fps, 'window.fps')
@@ -48,9 +51,48 @@ const CyjGame = (fps) => {
         }, 1000/window.fps)
     }
 
-    setTimeout(() => {
-        runLoop()
-    }, 1000/fps)
+    //
+    let loads = []
+    // 预先载入所有图片
+    let names = Object.keys(images)
+    for (let i = 0; i < names.length; i++) {
+        const name = names[i];
+        const path = images[name];
+        const img = new Image()
+        img.src = path
+        img.onload = () => {
+            // 存入 g.images 中
+            g.images[name] = img
+            // 所有图片都载入成功后, 调用run
+            log('hello 载入图片', loads.length, images.length)
+            loads.push(1)
+            if (loads.length === names.length) {
+                log('hello 载入图片')
+                g.run()
+            }
+        }
+    }
+    g.imageByName = (name) => {
+        log(g.images, 'g.images')
+
+        let img = g.images[name]
+        let image = {
+            w: img.width,
+            h: img.height,
+            image: img,
+        }
+        return image
+    }
+    g.run = () => {
+        runCallback(g)
+        // 开始运行
+        setTimeout(() => {
+            runLoop()
+        }, 1000/fps)
+
+    }
+
+
 
     // timer 60fps
     // setInterval(() => {

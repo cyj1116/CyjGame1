@@ -1,11 +1,15 @@
-const Paddle = () => {
-    let image = imageFromPath('paddle.png')
-    let o = {
-        image: image,
-        x: 100,
-        y: 250,
-        speed: 15,
-    }
+const Paddle = (game) => {
+    let o = game.imageByName('paddle')
+    // let o = {
+    //     image: image,
+    //     x: 100,
+    //     y: 250,
+    //     speed: 15,
+    // }
+    o.x = 100
+    o.y = 250
+    o.speed = 15
+
     o.move = (x) => {
         if (x < 0) {
             x = 0

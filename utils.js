@@ -1,9 +1,19 @@
-const log = console.log.bind(console)
+// const log = (s) => {
+//     e('#id-text-log').value += '\n' + s
+// }
+
+const log = console.log.bind(console, '---Log:')
+
+const e = sel => document.querySelector(sel)
 
 const imageFromPath = (path) => {
     const img = new Image()
     img.src = path
     return img
+}
+
+const imageByName = (name) => {
+
 }
 
 // 矩形相交
@@ -22,3 +32,4 @@ const rectIntersects = (a, b) => {
     }
     return false
 }
+
