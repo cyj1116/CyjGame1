@@ -27,5 +27,10 @@ const Ball = (game) => {
     o.反弹 = () => {
         o.speedY *= -1
     }
+    o.hasPoint = (x, y) => {
+        let xIn = x >= o.x && x <= o.x + o.w
+        let yIn = y >= o.y && y <= o.y + o.h
+        return xIn && yIn
+    }
     return o
 }
