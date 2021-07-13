@@ -1,6 +1,7 @@
 const CyjGame = (fps, images, runCallback) => {
     // images 是一个对象, 里面是图片的名字, 程序会在所有图片载入成功后运行
     let g = {
+        scene: null,
         actions: {},
         keydowns: {},
         images: {}
@@ -20,12 +21,20 @@ const CyjGame = (fps, images, runCallback) => {
     window.addEventListener('keyup', (event) => {
         g.keydowns[event.key] = false
     })
+    // update
+    g.update = () => {
+        g.scene.update()
+    }
+    // draw
+    g.draw = () => {
+        g.scene.draw()
+    }
     //
     g.registerAction = (key, callback) => {
         g.actions[key] = callback
     }
     //timer
-    window.fps = 60
+    window.fps = 30
 
     // 递归 动态调试
     const runLoop = () => {
@@ -68,7 +77,7 @@ const CyjGame = (fps, images, runCallback) => {
             loads.push(1)
             if (loads.length === names.length) {
                 log('hello 载入图片')
-                g.run()
+                g.__start()
             }
         }
     }
@@ -83,13 +92,21 @@ const CyjGame = (fps, images, runCallback) => {
         }
         return image
     }
-    g.run = () => {
-        runCallback(g)
+
+    g.runWithScene = (scene) => {
+        g.scene = scene
         // 开始运行
         setTimeout(() => {
             runLoop()
         }, 1000/fps)
+    }
 
+    g.replaceScene = (scene) => {
+        g.scene = scene
+    }
+
+    g.__start = (scene) => {
+        runCallback(g)
     }
 
 

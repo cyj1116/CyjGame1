@@ -1,7 +1,7 @@
 const loadLevel = (game, n) => {
     n = n - 1
     let level = levels[n]
-    let blocks = []
+    var blocks = []
     for (let i = 0; i < level.length; i++) {
         // position
         const p = level[i]
@@ -12,9 +12,10 @@ const loadLevel = (game, n) => {
 }
 
 // 为了调试, 两个全局变量
-window.paused = false
+// window.paused = false
 // 初始化 blocks
-let blocks = []
+// let blocks = []
+
 const enableDebugMode = function (game, enable) {
     if (!enable) {
         return
@@ -38,114 +39,20 @@ const enableDebugMode = function (game, enable) {
     })
 }
 
-
-
 const __main = () => {
     const images = {
         ball: 'ball.png',
         block: 'block.png',
         paddle: 'paddle.png',
     }
-    let game = CyjGame(30, images, (g) => {
-        let paddle = Paddle(game)
 
-        let ball = Ball(game)
 
-        let score = 0
-
-        blocks = loadLevel(game, 1)
-
-        game.registerAction('a', () => {
-            paddle.moveLeft()
-        })
-        game.registerAction('d', () => {
-            paddle.moveRight()
-        })
-        game.registerAction('f', () => {2
-            ball.fire()
-        })
-
-        game.update = () => {
-            if (paused) {
-                return
-            }
-            ball.move()
-            // 判断相撞
-            if (paddle.collide(ball)) {
-                // 反弹
-                // ball.speedY *= -1
-                ball.反弹()
-            }
-            // 判断 ball 和 blocks 相撞
-            for (let i = 0; i < blocks.length; i++) {
-                const block = blocks[i];
-                if (block.collide(ball)) {
-                    log('block 相撞')
-                    block.kill()
-                    ball.反弹()
-                    score += 100
-                }
-            }
-        }
-        //mouse event
-        let enableDrag = false
-        game.canvas.addEventListener('mousedown', (event) => {
-            let x = event.offsetX
-            let y = event.offsetY
-            log(x, y,event)
-            // 检查是否点中了ball
-            if (ball.hasPoint(x, y)) {
-                // 设置拖拽状态
-                enableDrag = true
-            }
-        })
-        game.canvas.addEventListener('mousemove', (event) => {
-            let x = event.offsetX
-            let y = event.offsetY
-            // log(x, y, 'move')
-            if (enableDrag) {
-                log(x, y, 'drag')
-
-                ball.x = x
-                ball.y = y
-            }
-        })
-        game.canvas.addEventListener('mouseup', (event) => {
-            let x = event.offsetX
-            let y = event.offsetY
-            enableDrag = false
-            log(x, y, 'up')
-        })
-        game.draw = () => {
-            // draw 背景
-            game.context.fillStyle = 'gray'
-            game.context.fillRect(0, 0, 400, 300)
-            //draw
-            // game.context.drawImage(paddle.image, paddle.x, paddle.y)
-            game.drawImage(paddle)
-            game.drawImage(ball)
-
-            // draw blocks
-            for (let i = 0; i < blocks.length; i++) {
-                const block = blocks[i];
-                if (block.alive) {
-                    game.drawImage(block)
-                }
-            }
-
-            //draw babels
-            game.context.fillText(`分数 ${score}`, 10, 290)
-
-        }
+    const game = CyjGame(30, images, (g) => {
+        let s = Scene(g)
+        g.runWithScene(s)
     })
 
     enableDebugMode(game, true)
-
-
-
 }
-
-
-
 
 __main()
