@@ -25,6 +25,7 @@ const Scene = (game) => {
         ball.fire()
     })
 
+
     s.draw = () => {
         // draw 背景
         game.context.fillStyle = 'gray'
@@ -51,11 +52,11 @@ const Scene = (game) => {
             return
         }
         ball.move()
-        // 判断死亡游戏结束
+        // 判断死亡 游戏结束
         if (ball.y > paddle.y) {
             // 跳转到游戏结束场景
 
-            let end = SceneEnd(game)
+            let end = SceneEnd.new(game)
             game.replaceScene(end)
             return
         }

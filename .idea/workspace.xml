@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c32661a0-2b66-45a7-a020-e2c88e491ab5" name="Default Changelist" comment="修复碰撞bug, 增加鼠标拖拽球的功能">
+    <list default="true" id="c32661a0-2b66-45a7-a020-e2c88e491ab5" name="Default Changelist" comment="v0.4, 更换素材, 修复碰撞bug, 增加鼠标拖拽球的功能">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cyjgame.js" beforeDir="false" afterPath="$PROJECT_DIR$/cyjgame.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/game.html" beforeDir="false" afterPath="$PROJECT_DIR$/game.html" afterDir="false" />
@@ -68,8 +68,12 @@
       <workItem from="1625564637832" duration="7767000" />
       <workItem from="1625617554700" duration="11900000" />
       <workItem from="1625659827883" duration="3007000" />
+<<<<<<< Updated upstream
       <workItem from="1626007814533" duration="2532000" />
       <workItem from="1626173249531" duration="5523000" />
+=======
+      <workItem from="1626007814533" duration="2795000" />
+>>>>>>> Stashed changes
     </task>
     <task id="LOCAL-00001" summary="修复碰撞bug, 增加鼠标拖拽球的功能">
       <created>1626009841902</created>
@@ -78,7 +82,21 @@
       <option name="project" value="LOCAL" />
       <updated>1626009841902</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="v0.4, 更换素材, 修复碰撞bug, 增加鼠标拖拽球的功能">
+      <created>1626010353770</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1626010353770</updated>
+    </task>
+    <task id="LOCAL-00003" summary="v0.4, 更换素材, 修复碰撞bug, 增加鼠标拖拽球的功能">
+      <created>1626010370944</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1626010370944</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -98,7 +116,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="修复碰撞bug, 增加鼠标拖拽球的功能" />
-    <option name="LAST_COMMIT_MESSAGE" value="修复碰撞bug, 增加鼠标拖拽球的功能" />
+    <MESSAGE value="v0.4, 更换素材, 修复碰撞bug, 增加鼠标拖拽球的功能" />
+    <option name="LAST_COMMIT_MESSAGE" value="v0.4, 更换素材, 修复碰撞bug, 增加鼠标拖拽球的功能" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

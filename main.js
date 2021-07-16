@@ -41,14 +41,14 @@ const enableDebugMode = function (game, enable) {
 
 const __main = () => {
     const images = {
-        ball: 'ball.png',
-        block: 'block.png',
-        paddle: 'paddle.png',
+        ball: 'img/ball.png',
+        block: 'img/block.png',
+        paddle: 'img/paddle.png',
     }
 
 
-    const game = CyjGame(30, images, (g) => {
-        let s = Scene(g)
+    const game = CyjGame.instance(30, images, (g) => {
+        let s = SceneTitle.new(g)
         g.runWithScene(s)
     })
 
