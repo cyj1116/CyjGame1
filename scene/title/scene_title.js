@@ -2,7 +2,7 @@ class SceneTitle extends CyjScene {
     constructor(game) {
         super(game)
         game.registerAction('k', () => {
-            let s = Scene(game)
+            let s = new Scene(game)
             game.replaceScene(s)
         })
     }
