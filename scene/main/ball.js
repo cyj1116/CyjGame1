@@ -1,36 +1,40 @@
-const Ball = (game) => {
-    let o = game.imageByName('ball')
-        o.x = 100
-        o.y = 200
-        o.speedX = 5
-        o.speedY = 5
-        o.fired = false
-
-    o.move = () => {
-        if (o.fired) {
+class Ball extends CyjImage {
+    constructor(game, name, width, height) {
+        super(game, name, width, height);
+        this.setUp()
+    }
+    setUp() {
+        this.x = 100
+        this.y = 200
+        this.speedX = 5
+        this.speedY = 5
+        this.fired = false
+    }
+    move() {
+        if (this.fired) {
             // log('move')
             // 碰撞边框
-            if (o.x < 0 || o.x > 400) {
-                o.speedX *= -1
+            if (this.x < 0 || this.x > 400) {
+                this.speedX *= -1
             }
-            if (o.y < 0 || o.y > 300) {
-                o.speedY *= -1
+            if (this.y < 0 || this.y > 300) {
+                this.speedY *= -1
             }
             // move
-            o.x += o.speedX
-            o.y += o.speedY
+            this.x += this.speedX
+            this.y += this.speedY
         }
     }
-    o.fire = () => {
-        o.fired = true
+    fire() {
+        this.fired = true
     }
-    o.反弹 = () => {
-        o.speedY *= -1
+    反弹() {
+        this.speedY *= -1
     }
-    o.hasPoint = (x, y) => {
-        let xIn = x >= o.x && x <= o.x + o.w
-        let yIn = y >= o.y && y <= o.y + o.h
+    hasPoint(x, y) {
+        let xIn = x >= this.x && x <= this.x + this.w
+        let yIn = y >= this.y && y <= this.y + this.h
         return xIn && yIn
     }
-    return o
 }
+

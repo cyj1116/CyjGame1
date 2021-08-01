@@ -5,7 +5,7 @@ const loadLevel = (game, n) => {
     for (let i = 0; i < level.length; i++) {
         // position
         const p = level[i]
-        let b = Block(game, p)
+        let b = new Block(game, p)
         window.blocks.push(b)
     }
     return window.blocks
@@ -36,6 +36,7 @@ const enableDebugMode = function (game, enable) {
     document.querySelector('#id-input-speed').addEventListener('input', (event) => {
         let input = event.target
         window.fps = Number(input.value)
+
     })
 }
 

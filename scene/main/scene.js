@@ -6,8 +6,8 @@ class Scene {
         this.mouseEvent()
     }
     setup() {
-        this.paddle = Paddle(this.game)
-        this.ball = Ball(this.game)
+        this.paddle = new Paddle(this.game, 'paddle')
+        this.ball = new Ball(this.game, 'ball')
         this.score = 0
         this.enableDrag = false
         window.blocks = loadLevel(this.game, 1)
@@ -49,17 +49,19 @@ class Scene {
         }
         this.ball.move()
         // 判断死亡 游戏结束
-        if (this.ball.y > this.paddle.y) {
-            // 跳转到游戏结束场景
-
-            let end = SceneEnd.new(this.game)
-            this.game.replaceScene(end)
-            return
-        }
+        // if (this.ball.y > this.paddle.y) {
+        //     // 跳转到游戏结束场景
+        //
+        //     let end = SceneEnd.new(this.game)
+        //     this.game.replaceScene(end)
+        //     return
+        // }
         // 判断相撞
+        // log(this.paddle, 'x')
         if (this.paddle.collide(this.ball)) {
             // 反弹
             // ball.speedY *= -1
+            log('反弹')
             this.ball.反弹()
         }
         // 判断 ball 和 blocks 相撞
@@ -71,6 +73,14 @@ class Scene {
                 this.ball.反弹()
                 this.score += 100
             }
+        }
+        // 判断死亡 游戏结束
+        if (this.ball.y > (this.paddle.y + this.paddle.h)) {
+            // 跳转到游戏结束场景
+
+            let end = SceneEnd.new(this.game)
+            this.game.replaceScene(end)
+            return
         }
     }
     mouseEvent() {

@@ -1,26 +1,27 @@
-const Block = (game, position) => {
+class Block {
     // position 是 [0, 0] 格式
-    let p = position
-    let img = game.imageByName('block')
-
-    let o = {
-        x: p[0],
-        y: p[1],
-        alive: true,
-        lives: p[2] || 1,
+    constructor(game, position) {
+        this.texture = game.textureByName('block')
+        log(this, 'this.texture')
+        this.w = this.texture.width
+        // this.h = height || this.texture.height
+        this.h = this.texture.height
+        this.p = position
+        this.setUp()
     }
-
-    o.image = img.image
-    o.w = img.w
-    o.h = img.h
-    o.kill = () => {
-        o.lives--
-        if (o.lives < 1) {
-            o.alive = false
+    setUp() {
+        this.x = this.p[0]
+        this.y = this.p[1]
+        this.alive = true
+        this.lives = this.p[2] || 1
+    }
+    kill() {
+        this.lives--
+        if (this.lives < 1) {
+            this.alive = false
         }
     }
-
-    o.collide = (b) => {
+    collide(b) {
         // AB两矩形相交
         // b 在 a 中
         // b 左上角的 x 在 a 的里面
@@ -32,7 +33,6 @@ const Block = (game, position) => {
         //     }
         // }
         // return false
-        return o.alive && (rectIntersects(o, b) || rectIntersects(b, o))
+        return this.alive && (rectIntersects(this, b) || rectIntersects(b, this))
     }
-    return o
 }
